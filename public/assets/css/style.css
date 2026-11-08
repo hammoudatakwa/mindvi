@@ -1,0 +1,336 @@
+/* MIND VI — Editorial & Cinematic Agency Styles */
+
+html {
+  scroll-behavior: smooth;
+  cursor: default !important;
+  background-color: #050505;
+}
+
+body {
+  background-color: transparent !important;
+  color: #F5F1E8;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: default !important;
+}
+
+a, button, [role="button"], input, select, textarea {
+  cursor: pointer !important;
+}
+
+::selection {
+  background-color: #C9A227;
+  color: #050505;
+}
+
+/* ==================== FULL-SCREEN VIDEO BACKGROUND ==================== */
+.video-bg-container {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: scale(12.1) !important;
+}
+
+.video-bg-container video {
+  position: absolute;
+  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+/* Legible typography shadows without dark background overlays */
+.hero-content h1,
+.ideas-wrapper h2,
+.different-minds-wrapper h2,
+.mts-wrapper h2,
+.cta-wrapper h2 {
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65), 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Subtle Film Grain Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9A227;
+  border-radius: 3px;
+}
+
+/* Navbar glass effect on scroll */
+.nav-scrolled {
+  background-color: rgba(5, 5, 5, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(245, 241, 232, 0.05);
+}
+
+/* Link underline animated line */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: #C9A227;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.nav-link.active {
+  color: #C9A227 !important;
+}
+
+/* ==================== DYNAMIC INTERACTIVE ANIMATIONS ==================== */
+
+/* Magnetic Pill Buttons with Light Sweep */
+.pill-btn {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pill-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(230, 193, 90, 0.25), transparent);
+  transition: left 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+.pill-btn:hover::before {
+  left: 120%;
+}
+
+.pill-btn:hover {
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.35);
+  border-color: #C9A227 !important;
+  color: #F3D98A !important;
+}
+
+.magnetic-wrap {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Ambient Floating for Indicators */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: floatGentle 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Interactive Social Icons */
+.social-icon-btn {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+.social-icon-btn:hover {
+  transform: translateY(-4px) scale(1.12);
+  border-color: #C9A227 !important;
+  color: #C9A227 !important;
+  box-shadow: 0 4px 18px rgba(201, 162, 39, 0.35);
+}
+
+/* Perspective Tilt Wrapper for Sections */
+.interactive-tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+}
+
+/* Accent Glow Pulse on Key Headlines */
+@keyframes accentGlow {
+  0%, 100% {
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65), 0 0 20px rgba(201, 106, 36, 0.2);
+  }
+  50% {
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65), 0 0 35px rgba(230, 193, 90, 0.4);
+  }
+}
+
+.glow-accent {
+  animation: accentGlow 4s ease-in-out infinite;
+}
+
+/* ==================== PROJECTS GLASSMORPHIC SHOWCASE ==================== */
+.project-glass-card {
+  background: rgba(10, 10, 10, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 241, 232, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.project-glass-card:hover {
+  border-color: rgba(201, 162, 39, 0.5);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65), 0 0 30px rgba(201, 162, 39, 0.2), inset 0 1px 0 rgba(230, 193, 90, 0.2);
+}
+
+.filter-tab {
+  background: rgba(15, 15, 15, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 241, 232, 0.15);
+  color: rgba(245, 241, 232, 0.75);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.filter-tab:hover {
+  border-color: #C9A227;
+  color: #F3D98A;
+  background: rgba(20, 20, 20, 0.85);
+  transform: translateY(-2px);
+}
+
+.filter-tab.active {
+  border-color: #C9A227 !important;
+  color: #F3D98A !important;
+  background: rgba(201, 162, 39, 0.18) !important;
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.35) !important;
+}
+
+.project-item {
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+.project-item.filter-hidden {
+  opacity: 0 !important;
+  transform: scale(0.96) translateY(20px) !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  visibility: hidden !important;
+}
+
+/* ==================== THE SIX MINDS TEAM SHOWCASE ==================== */
+.member-porthole-btn {
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.05) 0%, transparent 70%);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease;
+}
+
+.member-porthole-btn:hover .porthole-ring,
+.member-porthole-btn.active .porthole-ring {
+  border: 2px solid #C9A227 !important;
+  box-shadow: 0 0 25px rgba(201, 162, 39, 0.7), inset 0 0 15px rgba(230, 193, 90, 0.35);
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.25) 0%, transparent 75%);
+}
+
+.member-porthole-btn.active {
+  transform: scale(1.12) !important;
+}
+
+.team-bg-fixed img {
+  will-change: transform;
+}
+
+/* ==================== CONTACT PAGE ==================== */
+.contact-glass-card {
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(245, 241, 232, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.contact-glass-card:hover {
+  border-color: rgba(201, 162, 39, 0.35);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65), 0 0 25px rgba(201, 162, 39, 0.12), inset 0 1px 0 rgba(230, 193, 90, 0.15);
+}
+
+.contact-input {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-input:focus {
+  border-color: #C9A227 !important;
+  box-shadow: 0 2px 0 0 rgba(201, 162, 39, 0.4);
+}
+
+/* Style for select dropdown arrows */
+.contact-glass-card select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(245,241,232,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 14px;
+}
+
+.contact-info-card {
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 241, 232, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.contact-info-card:hover {
+  border-color: rgba(201, 162, 39, 0.45);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55), 0 0 20px rgba(201, 162, 39, 0.15), inset 0 1px 0 rgba(230, 193, 90, 0.18);
+  transform: translateY(-3px);
+}
